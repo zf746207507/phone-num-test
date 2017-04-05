@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html style="width: 100%; height: 100%;">
 	<head>
 		<meta charset="UTF-8">
 		<title></title>
 		<script type="text/javascript" src="jquery-1.11.0.js" ></script>
 	</head>
-	<body>
+	<body style="width:100%; height:100%; display: flex; justify-content: center; align-items: center;">
 		<div>
 			<p>
 				<span>手机号：</span>
@@ -17,6 +17,7 @@
 				<span id="code-get">获取验证码</span>
 			</p>
 			<button id="button">确认</button>
+			<p style="display: none;" class="inp-phone-num">请输入您的手机号码</p>
 			<p style="display: none;" class="none">验证码错误</p>
 		</div>
 	</body>
@@ -32,6 +33,9 @@
                 	var int=setInterval (time,1000);
                 	function time() {
                 		second--;
+                		if(second<10) {
+                			second='0'+second;
+                		}
                 		$('#code-get').html(second);
                 		if(second<=0) {
                 			$('#code-get').html('请重新获取验证码');
@@ -42,7 +46,11 @@
                 	
                 })
             } else {
-                alert('请输入您的手机号');
+               $('.inp-phone-num').css('display','block');
+               function dispearNum() {
+  					$('.inp-phone-num').css('display','none');
+  				}
+  				setTimeout(dispearNum,2000);
             }
   		});
   		$('#button').click(function() {
